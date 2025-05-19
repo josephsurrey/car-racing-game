@@ -25,14 +25,16 @@
             "id": "7537f5bcdadb83ca",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "kanban",
               "state": {
-                "file": "Car Racing Game Documentation.md",
-                "mode": "source",
-                "source": false
+                "file": "Decomposition/settings.py Decomposition.md",
+                "kanbanViewState": {
+                  "kanban-plugin": "board",
+                  "list-collapse": []
+                }
               },
-              "icon": "lucide-file",
-              "title": "Car Racing Game Documentation"
+              "icon": "lucide-trello",
+              "title": "settings.py Decomposition"
             }
           }
         ],
@@ -186,10 +188,12 @@
   },
   "active": "7537f5bcdadb83ca",
   "lastOpenFiles": [
-    "Documentation PowerPoint.md",
+    "Decomposition/Game Class Decomposition.md",
     "Car Racing Game Documentation.md",
-    "Untitled",
+    "Decomposition/Car Class Decomposition.md",
     "Marking Guide.md",
+    "Documentation PowerPoint.md",
+    "Untitled",
     "Welcome.md"
   ]
 }

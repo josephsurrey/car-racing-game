@@ -1,7 +1,10 @@
 ---
+
 kanban-plugin: board
+
 ---
-# Game Constants & Configuration
+
+## Game Constants & Configuration
 
 - [ ] Define screen width and height.
 - [ ] Define target Frames Per Second.
@@ -17,5 +20,12 @@ kanban-plugin: board
 - [ ] Define fixed Y-position for the player car.
 - [ ] Define X-positions or lanes for NPC car spawning.
 - [ ] Define player horizontal movement speed.
-- [ ] Define initial road speed.
-- [ ] Define score increment value.
+
+
+
+
+%% kanban:settings
+```
+{"kanban-plugin":"board"}
+```
+%%
