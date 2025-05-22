@@ -12,7 +12,7 @@ class Game:
     """
 
     def __init__(self):
-        #Initialise the game and sound
+        # Initialise the game and sound
         pygame.init()
         pygame.mixer.init()
 
@@ -52,7 +52,7 @@ class Game:
         self.high_score = 0
         self._load_high_score()
 
-         # Set road speed
+        # Set road speed
         self.current_road_speed = 0
 
         # Define the NPC spawning event
@@ -60,3 +60,36 @@ class Game:
         pygame.time.set_timer(
             self.NPC_SPAWN_EVENT, int(settings.NPC_SPAWN_INTERVAL * 1000)
         )
+
+    def run(self):
+        pass
+
+    def _handle_events(self):
+        pass
+
+    def _update_game_state(self):
+        pass
+
+    def _draw_elements(self):
+        pass
+
+    def _spawn_npc_car(self):
+        pass
+
+    def _check_collisions(self):
+        pass
+
+    def _update_score(self):
+        pass
+
+    def _load_high_score(self):
+        pass
+
+    def _save_high_score(self):
+        pass
+
+    def _reset_game(self):
+        pass
+
+    def _show_game_over_screen(self):
+        pass

@@ -4,7 +4,7 @@ from game import Game
 import settings
 
 def main():
-    """Initializes and runs the car racing game."""
+    """Initializes and runs the game"""
     game_instance = Game()
     game_instance.run()
 
