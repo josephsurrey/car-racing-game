@@ -68,7 +68,41 @@
 #### `__init__`
 
 ##### Component Test Plan
+| Test Number | Test Description                                            | Expected Outcome                                                                                                                     |
+| ----------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 1           | Verify Pygame and mixer are initialized                     | `pygame.init()` and `pygame.mixer.init()` are called                                                                                 |
+| 2           | Verify screen is set up with correct dimensions and caption | Screen is created with `settings.SCREEN_WIDTH`x`settings.SCREEN_HEIGHT`, caption is "Car Racing Game"                                |
+| 3           | Verify game clock is created                                | `pygame.time.Clock()` is called and `self.clock` is assigned                                                                         |
+| 4           | Verify initial game running state                           | `self.running` is True                                                                                                               |
+| 5           | Verify initial game over state                              | `self.game_over` is False                                                                                                            |
+| 6           | Verify `Road`  is instantiated                              | `self.road` is an instance of `Road`, initialized with appropriate settings parameters                                               |
+| 7           | Verify `PlayerCar`  is instantiated                         | `self.player_car` is an instance of `PlayerCar`, initialized with appropriate settings parameters                                    |
+| 8           | Verify `UIManager`  is instantiated                         | `self.ui_manager` is an instance of `UIManager`                                                                                      |
+| 9           | Verify sprite groups are initialized                        | `self.all_sprites` contains `self.player_car`, `self.npc_cars` is an empty `pygame.sprite.Group`                                     |
+| 10          | Verify score is set to zero                                 | `self.score` is 0                                                                                                                    |
+| 11          | Verify high score is initialized and load attempt           | `self.high_score` is initially 0, `self._load_high_score()` method is called                                                         |
+| 12          | Verify road speed is initialized                            | `self.current_road_speed` is 0                                                                                                       |
+| 13          | Verify NPC spawn event is set up                            | `self.NPC_SPAWN_EVENT` is `pygame.USEREVENT + 1`, `pygame.time.set_timer` is called with the event and `settings.NPC_SPAWN_INTERVAL` |
 ##### Component Testing
+![[game___init___test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 11 items
+
+test_game___init__.py::test_pygame_and_mixer_initialization PASSED       [  9%]
+test_game___init__.py::test_screen_caption_and_clock_setup PASSED        [ 18%]
+test_game___init__.py::test_initial_game_states PASSED                   [ 27%]
+test_game___init__.py::test_road_object_initialization PASSED            [ 36%]
+test_game___init__.py::test_player_car_object_initialization PASSED      [ 45%]
+test_game___init__.py::test_ui_manager_object_initialization PASSED      [ 54%]
+test_game___init__.py::test_sprite_groups_initialization PASSED          [ 63%]
+test_game___init__.py::test_score_initialization PASSED                  [ 72%]
+test_game___init__.py::test_high_score_initialization_and_load_attempt PASSED [ 81%]
+test_game___init__.py::test_current_road_speed_initialization PASSED     [ 90%]
+test_game___init__.py::test_npc_spawn_event_setup PASSED                 [100%]
+
+============================= 11 passed in 0.16s ==============================
+```
 #### `run`
 
 ##### Component Test Plan
