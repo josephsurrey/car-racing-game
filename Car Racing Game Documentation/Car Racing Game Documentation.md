@@ -106,7 +106,25 @@ test_game___init__.py::test_npc_spawn_event_setup PASSED                 [100%]
 #### `run`
 
 ##### Component Test Plan
+| Test Number | Test Description                                                           | Expected Outcome                                                                                                                                                                 |
+| ----------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Game loop calls correct functions and terminates when `running` is `false` | `clock.tick`, `_handle_events`, `_update_game_state` (if not game over), `_draw_elements`, `display.flip`, `display.set_caption` called once each. `pygame.quit` called on exit. |
+| 2           | `_update_game_state` is not run when `game_over` is true                   | `_handle_events`, `_draw_elements` called. `_update_game_state` is not called. Loop continues if `running` is true until `running` becomes false.                                |
+| 3           | Game loop runs for multiple iterations correctly                           | Core methods (`clock.tick`, `_handle_events`, etc) are called for each iteration. `pygame.quit` called once upon final exit.                                                     |
+| 4           | FPS is displayed in window caption during loop                             | `pygame.display.set_caption()` is called in each loop iteration with a string including the current FPS value from `clock.get_fps()`.                                            |
 ##### Component Testing
+![[game_run_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 4 items
+
+test_game_run.py::test_run_loop_single_iteration_and_termination PASSED  [ 25%]
+test_game_run.py::test_run_skips_update_game_state_when_game_over PASSED [ 50%]
+test_game_run.py::test_run_loop_multiple_iterations PASSED               [ 75%]
+test_game_run.py::test_run_updates_caption_with_fps PASSED               [100%]
+
+============================== 4 passed in 1.45s ==============================
+```
 #### `_handle_events`
 
 ##### Component Test Plan
