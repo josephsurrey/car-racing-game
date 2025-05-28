@@ -161,8 +161,23 @@ class Game:
                 self.screen, self.score, self.high_score
             )
 
-    def _spawn_npc_car(self):
-        pass
+    def _spawn_npc_car(self, initial_spawn=False):
+        # If there are fewer cars than the maximum on screen
+        if len(self.npc_cars) < settings.MAX_NPCS:
+            # Set x pos to random choice of lane positions
+            npc_x_pos = random.choice(settings.LANE_POSITIONS)
+            # Set y pos based on height of car
+            npc_y_pos = -settings.PLACEHOLDER_NPC_HEIGHT
+            # Set random speed in between defined min and max speed
+            npc_speed = random.randint(settings.NPC_MIN_SPEED, settings.NPC_MAX_SPEED)
+
+            # Create a new instance of NPCCar
+            npc = NPCCar(settings.NPC_IMAGE_PATH, npc_x_pos, npc_y_pos, npc_speed)
+
+            # Add new npc instance to sprite groups
+            self.all_sprites.add(npc)
+            self.npc_cars.add(npc)
+
 
     def _check_collisions(self):
         pass
