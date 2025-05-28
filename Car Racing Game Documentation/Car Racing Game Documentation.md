@@ -213,7 +213,23 @@ test_game__draw_elements.py::test_draw_elements_when_game_is_over PASSED [100%]
 #### `_spawn_npc_car`
 
 ##### Component Test Plan
+| Test Number | Test Description                                             | Expected Outcome                                                                                                                                                                                             |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1           | Spawn NPC when current NPC count is below `MAX_NPCS`         | A new `NPCCar` is created. The NPC is added to `self.npc_cars` and `self.all_sprites` groups. NPC counts in these groups increase by 1                                                                       |
+| 2           | Attempt to spawn NPC when current NPC count is at `MAX_NPCS` | No new `NPCCar` is created. `self.npc_cars` and `self.all_sprites` groups remain the same                                                                                                                    |
+| 3           | Verify spawned NPC is initialized with correct parameters    | `NPCCar` is instantiated with image path from `settings`, x-position from `settings.LANE_POSITIONS`, y-position as `-settings.PLACEHOLDER_NPC_HEIGHT`, and speed within `settings.NPC_MIN_SPEED`/`MAX_SPEED` |
 ##### Component Testing
+![[game__spawn_npc_car_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 3 items
+
+test_game__spawn_npc_car.py::test_spawn_npc_car_when_below_max PASSED    [ 33%]
+test_game__spawn_npc_car.py::test_spawn_npc_car_when_at_max PASSED       [ 66%]
+test_game__spawn_npc_car.py::test_spawn_npc_car_initializes_with_correct_parameters PASSED [100%]
+
+============================== 3 passed in 0.32s ==============================
+```
 #### `_check_collisions`
 
 ##### Component Test Plan
