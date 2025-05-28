@@ -88,7 +88,47 @@ class Game:
         pygame.quit()
 
     def _handle_events(self):
-        pass
+        # Check to see if user has quit the game
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+
+            # Check to see if user wants to play again/quit
+            if self.game_over:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        self._reset_game()
+                    if event.key == pygame.K_ESCAPE:
+                        self.running = False
+            else:
+                # Check for spawning NPC's
+                if event.type == self.NPC_SPAWN_EVENT:
+                    self._spawn_npc_car()
+
+        # If game is being played
+        if not self.game_over:
+            # Get keypress
+            keys = pygame.key.get_pressed()
+            # Accelerate or brake if correct keys are pressed
+            if keys[pygame.K_UP] or keys[pygame.K_w]:
+                self.current_road_speed += settings.ACCELERATION_CONSTANT
+            elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
+                self.current_road_speed -= settings.BRAKING_CONSTANT
+
+            # If current speed is >= max speed, set speed to max speed
+            self.current_road_speed = max(
+                0, min(self.current_road_speed, settings.MAX_SPEED)
+            )
+
+            # Move horizontally if correct keys are pressed
+            if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+                self.player_car.move_horizontal(
+                    -settings.HORIZONTAL_SPEED_CONSTANT
+                )
+            if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+                self.player_car.move_horizontal(
+                    settings.HORIZONTAL_SPEED_CONSTANT
+                )
 
     def _update_game_state(self):
         pass

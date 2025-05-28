@@ -27,7 +27,7 @@ class PlayerCar(Car):
     def brake(self):
         pass
 
-    def move_horizontal(self):
+    def move_horizontal(self, horizontal_speed):
         pass
 
 
