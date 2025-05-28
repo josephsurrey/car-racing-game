@@ -251,7 +251,30 @@ test_game__check_collisions.py::TestGameCheckCollisions::test_collision_detected
 #### `_update_score`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                                  | Expected Outcome                                                                  |
+|-------------|---------------------------------------------------|-----------------------------------------------------------------------------------|
+| 1           | NPC is passed by player for the first time        | Score increases by 10, NPC is added to the set of passed NPCs                     |
+| 2           | NPC has already been passed and is checked again  | Score does not change, NPC remains in the set of passed NPCs                      |
+| 3           | NPC has not yet been passed by the player         | Score does not change, NPC is not added to the set of passed NPCs                 |
+| 4           | There are no NPC cars on screen                   | Score does not change, set of passed NPCs remains empty                           |
+| 5           | A previously passed NPC despawns (is not alive)   | NPC is removed from the set of passed NPCs, score remains unchanged from this event |
+| 6           | An NPC that was never passed despawns             | Score does not change, set of passed NPCs remains unchanged                       |
 ##### Component Testing
+![[game_update_score_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 6 items
+
+test_game__update_score.py::test_npc_passed_first_time PASSED            [ 16%]
+test_game__update_score.py::test_npc_already_passed PASSED               [ 33%]
+test_game__update_score.py::test_npc_not_yet_passed PASSED               [ 50%]
+test_game__update_score.py::test_no_npc_cars PASSED                      [ 66%]
+test_game__update_score.py::test_passed_npc_despawns PASSED              [ 83%]
+test_game__update_score.py::test_unpassed_npc_despawns PASSED            [100%]
+
+============================== 6 passed in 0.32s ==============================
+```
 #### `_load_high_score`
 
 ##### Component Test Plan
