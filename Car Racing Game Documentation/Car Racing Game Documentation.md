@@ -233,7 +233,21 @@ test_game__spawn_npc_car.py::test_spawn_npc_car_initializes_with_correct_paramet
 #### `_check_collisions`
 
 ##### Component Test Plan
+| Test Number | Test Description                             | Expected Outcome                                                          |
+| ----------- | -------------------------------------------- | ------------------------------------------------------------------------- |
+| 1           | Player car does not collide with any NPC car | `self.game_over` remains `False`, `_save_high_score` method is not called |
+| 2           | Player car collides with an NPC car          | `self.game_over` becomes `True`, `_save_high_score` method is called      |
 ##### Component Testing
+![[game__check_collisions_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 2 items
+
+test_game__check_collisions.py::TestGameCheckCollisions::test_no_collision_detected PASSED [ 50%]
+test_game__check_collisions.py::TestGameCheckCollisions::test_collision_detected PASSED [100%]
+
+============================== 2 passed in 0.06s ==============================
+```
 #### `_update_score`
 
 ##### Component Test Plan
