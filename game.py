@@ -1,16 +1,10 @@
 import pygame
 import random
 import settings
-from car import (
-    PlayerCar,
-    NPCCar,
-)
-from road import (
-    Road,
-)
-from ui_manager import (
-    UIManager,
-)
+
+from car import PlayerCar, NPCCar
+from road import Road
+from ui_manager import UIManager
 
 
 class Game:
@@ -18,19 +12,14 @@ class Game:
     Manages the main game loop/game states
     """
 
-    def __init__(
-        self,
-    ):
+    def __init__(self):
         # Initialise the game and sound
         pygame.init()
         pygame.mixer.init()
 
         # Setup the screen, caption, and clock
         self.screen = pygame.display.set_mode(
-            (
-                settings.SCREEN_WIDTH,
-                settings.SCREEN_HEIGHT,
-            )
+            (settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT)
         )
         pygame.display.set_caption("Car Racing Game")
         self.clock = pygame.time.Clock()
@@ -73,13 +62,10 @@ class Game:
         # Define the NPC spawning event
         self.NPC_SPAWN_EVENT = pygame.USEREVENT + 1
         pygame.time.set_timer(
-            self.NPC_SPAWN_EVENT,
-            int(settings.NPC_SPAWN_INTERVAL * 1000),
+            self.NPC_SPAWN_EVENT, int(settings.NPC_SPAWN_INTERVAL * 1000)
         )
 
-    def run(
-        self,
-    ):
+    def run(self):
         while self.running:
             # Runs the game at the desired FPS
             self.clock.tick(settings.TARGET_FPS)
@@ -106,9 +92,7 @@ class Game:
         # When self.running is False, quit the game
         pygame.quit()
 
-    def _handle_events(
-        self,
-    ):
+    def _handle_events(self):
         # Check to see if user has quit the game
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -138,11 +122,7 @@ class Game:
 
             # If current speed is >= max speed, set speed to max speed
             self.current_road_speed = max(
-                0,
-                min(
-                    self.current_road_speed,
-                    settings.MAX_SPEED,
-                ),
+                0, min(self.current_road_speed, settings.MAX_SPEED)
             )
 
             # Move horizontally if correct keys are pressed
@@ -155,9 +135,7 @@ class Game:
                     settings.HORIZONTAL_SPEED_CONSTANT
                 )
 
-    def _update_game_state(
-        self,
-    ):
+    def _update_game_state(self):
         # Call function to update the road
         self.road.update(self.current_road_speed)
 
@@ -170,9 +148,7 @@ class Game:
         # Update score
         self._update_score()
 
-    def _draw_elements(
-        self,
-    ):
+    def _draw_elements(self):
         # Set screen colour to black
         self.screen.fill(settings.BLACK)
         # Draw the road on the screen
@@ -181,27 +157,16 @@ class Game:
         self.all_sprites.draw(self.screen)
 
         # Display score and high score
-        self.ui_manager.display_score(
-            self.screen,
-            self.score,
-        )
-        self.ui_manager.display_high_score(
-            self.screen,
-            self.high_score,
-        )
+        self.ui_manager.display_score(self.screen, self.score)
+        self.ui_manager.display_high_score(self.screen, self.high_score)
 
         # Display game over screen
         if self.game_over:
             self.ui_manager.display_game_over(
-                self.screen,
-                self.score,
-                self.high_score,
+                self.screen, self.score, self.high_score
             )
 
-    def _spawn_npc_car(
-        self,
-        initial_spawn=False,
-    ):
+    def _spawn_npc_car(self, initial_spawn=False):
         # If there are fewer cars than the maximum on screen
         if len(self.npc_cars) < settings.MAX_NPCS:
             # Set x pos to random choice of lane positions
@@ -210,8 +175,7 @@ class Game:
             npc_y_pos = -settings.PLACEHOLDER_NPC_HEIGHT
             # Set random speed in between defined min and max speed
             npc_speed = random.randint(
-                settings.NPC_MIN_SPEED,
-                settings.NPC_MAX_SPEED,
+                settings.NPC_MIN_SPEED, settings.NPC_MAX_SPEED
             )
 
             # Create a new instance of NPCCar
@@ -226,22 +190,15 @@ class Game:
             self.all_sprites.add(npc)
             self.npc_cars.add(npc)
 
-    def _check_collisions(
-        self,
-    ):
+    def _check_collisions(self):
         # If player collides with an NPC car
-        if pygame.sprite.spritecollideany(
-            self.player_car,
-            self.npc_cars,
-        ):
+        if pygame.sprite.spritecollideany(self.player_car, self.npc_cars):
             # Set game over to true
             self.game_over = True
             # Save high score
             self._save_high_score()
 
-    def _update_score(
-        self,
-    ):
+    def _update_score(self):
         # Iterate through all spawned NPCs
         for npc in list(self.npc_cars):
             # If player has passed npc
@@ -258,22 +215,14 @@ class Game:
             if not npc.alive() and npc in self.passed_npcs:
                 self.passed_npcs.remove(npc)
 
-    def _load_high_score(
-        self,
-    ):
+    def _load_high_score(self):
         pass
 
-    def _save_high_score(
-        self,
-    ):
+    def _save_high_score(self):
         pass
 
-    def _reset_game(
-        self,
-    ):
+    def _reset_game(self):
         pass
 
-    def _show_game_over_screen(
-        self,
-    ):
+    def _show_game_over_screen(self):
         pass
