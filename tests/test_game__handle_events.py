@@ -1,4 +1,3 @@
-# test_game_handle_events.py
 import pytest
 import pygame  # Make sure pygame is imported
 from unittest.mock import Mock, patch

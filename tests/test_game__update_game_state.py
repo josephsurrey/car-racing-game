@@ -1,4 +1,3 @@
-# test_game_update_game_state.py
 import pytest
 import pygame
 from unittest.mock import Mock, patch

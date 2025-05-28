@@ -193,7 +193,23 @@ test_game__update_game_state.py::test_update_game_state_calls_all_dependencies P
 #### `_draw_elements`
 
 ##### Component Test Plan
+| Test Number | Test Description                    | Expected Outcome                                                                                                                                                                                                                                   |
+| ----------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Draw elements when game is not over | Screen is filled with `settings.BLACK`, `road.draw` is called, `all_sprites.draw` is called, `ui_manager.display_score` and `ui_manager.display_high_score` are called. `ui_manager.display_game_over` is NOT called                               |
+| 2           | Draw elements when game is over     | Screen is filled with `settings.BLACK`, `road.draw` is called, `all_sprites.draw` is called, `ui_manager.display_score` and `ui_manager.display_high_score` are called. `ui_manager.display_game_over` IS called with current score and high score |
 ##### Component Testing
+![[game__draw_elements.png]]
+```
+============================= test session starts =============================
+collecting ... collected 2 items
+
+test_game__draw_elements.py::test_draw_elements_when_game_not_over pygame 2.6.1 (SDL 2.28.4, Python 3.13.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+PASSED [ 50%]
+test_game__draw_elements.py::test_draw_elements_when_game_is_over PASSED [100%]
+
+============================== 2 passed in 0.26s ==============================
+```
 #### `_spawn_npc_car`
 
 ##### Component Test Plan
