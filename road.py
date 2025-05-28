@@ -5,5 +5,5 @@ class Road:
     def update(self, current_road_speed):
         pass
 
-    def draw(self):
+    def draw(self, screen):
         pass

@@ -144,7 +144,22 @@ class Game:
         self._update_score()
 
     def _draw_elements(self):
-        pass
+        # Set screen colour to black
+        self.screen.fill(settings.BLACK)
+        # Draw the road on the screen
+        self.road.draw(self.screen)
+        # Draw all sprites on the screen
+        self.all_sprites.draw(self.screen)
+
+        # Display score and high score
+        self.ui_manager.display_score(self.screen, self.score)
+        self.ui_manager.display_high_score(self.screen, self.high_score)
+
+        # Display game over screen
+        if self.game_over:
+            self.ui_manager.display_game_over(
+                self.screen, self.score, self.high_score
+            )
 
     def _spawn_npc_car(self):
         pass
