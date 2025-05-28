@@ -278,7 +278,30 @@ test_game__update_score.py::test_unpassed_npc_despawns PASSED            [100%]
 #### `_load_high_score`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                                                   | Expected Outcome                                 |
+| ----------- | ------------------------------------------------------------------ | ------------------------------------------------ |
+| 1           | Load high score from an existing file with a valid integer         | `self.high_score` is set to the positive integer |
+| 2           | Attempt to load high score when the high score file does not exist | `self.high_score` is set to 0                    |
+| 3           | Attempt to load high score from a file with non-integer content    | `self.high_score` is set to 0                    |
+| 4           | Attempt to load high score from an empty file                      | `self.high_score` is set to 0                    |
+| 5           | Load high score from an existing file with a negative integer      | `self.high_score` is set to the negative integer |
+| 6           | Load high score from an existing file with zero as content         | `self.high_score` is set to 0                    |
 ##### Component Testing
+![[game__load_high_score_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 6 items
+
+test_game__load_high_score.py::test_load_high_score_file_exists_valid_content PASSED [ 16%]
+test_game__load_high_score.py::test_load_high_score_file_not_found PASSED [ 33%]
+test_game__load_high_score.py::test_load_high_score_invalid_content PASSED [ 50%]
+test_game__load_high_score.py::test_load_high_score_empty_file PASSED    [ 66%]
+test_game__load_high_score.py::test_load_high_score_negative_integer_content PASSED [ 83%]
+test_game__load_high_score.py::test_load_high_score_zero_content PASSED  [100%]
+
+============================== 6 passed in 0.61s ==============================
+```
 #### `_save_high_score`
 
 ##### Component Test Plan
