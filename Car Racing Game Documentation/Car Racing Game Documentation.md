@@ -303,9 +303,25 @@ test_game__load_high_score.py::test_load_high_score_zero_content PASSED  [100%]
 ============================== 6 passed in 0.61s ==============================
 ```
 #### `_save_high_score`
-
 ##### Component Test Plan
+| Test Number | Test Description                                          | Expected Outcome                                                                                     |
+|-------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| 1           | Current score is greater than the existing high score     | `self.high_score` is updated to the current score, and this new score is written to the high score file |
+| 2           | Current score is not greater than the existing high score | `self.high_score` remains unchanged, and no attempt is made to write to the high score file         |
+| 3           | File write fails with an `IOError` during a new high score| `self.high_score` is updated in memory, an error message is printed, and the program handles the error |
+
 ##### Component Testing
+![[game__save_high_score_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 3 items
+
+test_game__save_high_score_1.py::test_save_new_high_score_successful PASSED [ 33%]
+test_game__save_high_score_1.py::test_save_score_not_higher_than_high_score PASSED [ 66%]
+test_game__save_high_score_1.py::test_save_new_high_score_io_error_on_write PASSED [100%]
+
+============================== 3 passed in 0.08s ==============================
+```
 #### `_reset_game`
 
 ##### Component Test Plan
