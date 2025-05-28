@@ -176,7 +176,20 @@ test_game__handle_events.py::test_gameplay_keys_when_game_over PASSED    [100%]
 #### `_update_game_state`
 
 ##### Component Test Plan
+| Test Number | Test Description                                  | Expected Outcome                                                                                                                                                                 |
+| ----------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Call `_update_game_state` during normal gameplay. | `road.update` is called with `current_road_speed`. `player_car.update` is called. `npc_cars.update` (group) is called. `_check_collisions` is called. `_update_score` is called. |
+
 ##### Component Testing
+![[game__update_game_state_test-results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 1 item
+
+test_game__update_game_state.py::test_update_game_state_calls_all_dependencies PASSED [100%]
+
+============================== 1 passed in 0.23s ==============================
+```
 #### `_draw_elements`
 
 ##### Component Test Plan
