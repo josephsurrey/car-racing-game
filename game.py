@@ -169,18 +169,26 @@ class Game:
             # Set y pos based on height of car
             npc_y_pos = -settings.PLACEHOLDER_NPC_HEIGHT
             # Set random speed in between defined min and max speed
-            npc_speed = random.randint(settings.NPC_MIN_SPEED, settings.NPC_MAX_SPEED)
+            npc_speed = random.randint(
+                settings.NPC_MIN_SPEED, settings.NPC_MAX_SPEED
+            )
 
             # Create a new instance of NPCCar
-            npc = NPCCar(settings.NPC_IMAGE_PATH, npc_x_pos, npc_y_pos, npc_speed)
+            npc = NPCCar(
+                settings.NPC_IMAGE_PATH, npc_x_pos, npc_y_pos, npc_speed
+            )
 
             # Add new npc instance to sprite groups
             self.all_sprites.add(npc)
             self.npc_cars.add(npc)
 
-
     def _check_collisions(self):
-        pass
+        # If player collides with an NPC car
+        if pygame.sprite.spritecollideany(self.player_car, self.npc_cars):
+            # Set game over to true
+            self.game_over = True
+            # Save high score
+            self._save_high_score()
 
     def _update_score(self):
         pass
