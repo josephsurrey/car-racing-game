@@ -30,6 +30,9 @@ class PlayerCar(Car):
     def move_horizontal(self, horizontal_speed):
         pass
 
+    def reset_position(self):
+        pass
+
 
 class NPCCar(Car):
     def __init__(self, npc_image_path, x_pos, y_pos, speed):

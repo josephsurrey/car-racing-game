@@ -218,7 +218,7 @@ class Game:
     def _load_high_score(self):
         try:
             # Open high score file
-            with open(settings.HIGH_SCORE_FILE_PATH, 'r') as high_score:
+            with open(settings.HIGH_SCORE_FILE_PATH, "r") as high_score:
                 # Read high score
                 self.high_score = int(high_score.read())
         # If file not found, or error with converting file to integer
@@ -233,14 +233,33 @@ class Game:
             self.high_score = self.score
             try:
                 # Open file and write high score
-                with open(settings.HIGH_SCORE_FILE_PATH, 'w') as high_score:
+                with open(settings.HIGH_SCORE_FILE_PATH, "w") as high_score:
                     high_score.write(str(self.high_score))
             # If write fails, print error message
             except IOError:
                 print("Error: Could not save high score to file.")
 
     def _reset_game(self):
-        pass
+        # Reset variables back to starting values
+        self.game_over = False
+        self.score = 0
+        self.passed_npcs.clear()
+        self._load_high_score()
+
+        # Reset player position and road speed
+        self.player_car.reset_position()
+        self.current_road_speed = 0
+
+        # Clear NPC cars
+        for npc in self.npc_cars:
+            npc.kill()
+
+        # Reset road
+        self.road = Road(
+            settings.ROAD_IMAGE_PATH,
+            settings.SCREEN_WIDTH,
+            settings.SCREEN_HEIGHT,
+        )
 
     def _show_game_over_screen(self):
         pass
