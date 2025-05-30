@@ -260,6 +260,3 @@ class Game:
             settings.SCREEN_WIDTH,
             settings.SCREEN_HEIGHT,
         )
-
-    def _show_game_over_screen(self):
-        pass
