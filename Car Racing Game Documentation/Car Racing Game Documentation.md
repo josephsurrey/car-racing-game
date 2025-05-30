@@ -325,7 +325,28 @@ test_game__save_high_score_1.py::test_save_new_high_score_io_error_on_write PASS
 #### `_reset_game`
 
 ##### Component Test Plan
+| Test Number | Test Description                            | Expected Outcome                                                                            |
+| ----------- | ------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| 1           | Verify game state variables are reset       | `game_over` is `False`, `score` is `0`, `passed_npcs` is empty, `current_road_speed` is `0` |
+| 2           | Verify player car position is reset         | `player_car.reset_position()` method is called                                              |
+| 3           | Verify high score is reloaded               | `_load_high_score()` method is called                                                       |
+| 4           | Verify all NPC cars are cleared             | All `NPCCar` instances are removed from sprite groups, and their `kill()` method is called  |
+| 5           | Verify the `Road` object is re-instantiated | A new `Road` object is created using current `settings` values and assigned to `self.road`  |
+| 6           | Reset game when no NPC cars are present     | Game resets correctly and `npc_cars` group remains empty                                    |
 ##### Component Testing
+![[game__reset_game_test_results.png]]
+```============================= test session starts =============================
+collecting ... collected 6 items
+
+test_game__reset_game.py::test_reset_game_core_attributes PASSED         [ 16%]
+test_game__reset_game.py::test_reset_game_player_car_position_reset PASSED [ 33%]
+test_game__reset_game.py::test_reset_game_reloads_high_score PASSED      [ 50%]
+test_game__reset_game.py::test_reset_game_clears_npcs PASSED             [ 66%]
+test_game__reset_game.py::test_reset_game_reinitializes_road PASSED      [ 83%]
+test_game__reset_game.py::test_reset_game_with_no_initial_npcs PASSED    [100%]
+
+============================== 6 passed in 0.12s ==============================
+```
 #### `_show_game_over_screen`
 
 ##### Component Test Plan
