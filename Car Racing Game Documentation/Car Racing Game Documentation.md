@@ -347,10 +347,6 @@ test_game__reset_game.py::test_reset_game_with_no_initial_npcs PASSED    [100%]
 
 ============================== 6 passed in 0.12s ==============================
 ```
-#### `_show_game_over_screen`
-
-##### Component Test Plan
-##### Component Testing
 
 ## `car.py`
 ### Car Class
@@ -359,7 +355,23 @@ test_game__reset_game.py::test_reset_game_with_no_initial_npcs PASSED    [100%]
 #### `__init__`
 
 ##### Component Test Plan
+| Test Number | Test Description                                              | Expected Outcome                                                                                                                                      |
+| ----------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Initialize Car with a valid image path, position, and mask    | `self.image` loads from `car_image`, `self.rect.center` matches `(x_pos, y_pos)`, and `self.mask` is created from `self.image`                        |
+| 2           | Initialize Car with invalid image path when `is_npc` is true  | A blue placeholder surface is created for `self.image`, `self.rect.center` matches `(x_pos, y_pos)`, and `self.mask` is created from this placeholder |
+| 3           | Initialize Car with invalid image path when `is_npc` is false | A red placeholder surface is created for `self.image`, `self.rect.center` matches `(x_pos, y_pos)`, and `self.mask` is created from this placeholder  |
 ##### Component Testing
+![[car___init___test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 3 items
+
+test_car___init__.py::test_car_init_valid_image_load PASSED              [ 33%]
+test_car___init__.py::test_car_init_invalid_image_is_npc_true PASSED     [ 66%]
+test_car___init__.py::test_car_init_invalid_image_is_npc_false PASSED    [100%]
+
+============================== 3 passed in 0.43s ==============================
+```
 #### `update`
 
 ##### Component Test Plan
