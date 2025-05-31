@@ -377,10 +377,23 @@ test_car___init__.py::test_car_init_invalid_image_is_npc_false PASSED    [100%]
 >[!note]
 >No testing required as function is just placeholder
 #### `draw`
-
 ##### Component Test Plan
+| Test Number | Test Description                                  | Expected Outcome                                                                |
+| :---------- | :------------------------------------------------ | :------------------------------------------------------------------------------ |
+| 1           | Draw car with successfully loaded image           | `screen.blit` is called with the car's loaded `self.image` and `self.rect`      |
+| 2           | Draw car with placeholder image (image load fail) | `screen.blit` is called with the car's placeholder `self.image` and `self.rect` |
 ##### Component Testing
+![[car_draw_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 2 items
 
+test_car_draw.py::TestCarDraw::test_draw_blits_loaded_image_to_screen PASSED [ 50%]
+test_car_draw.py::TestCarDraw::test_draw_blits_placeholder_image_to_screen PASSED [100%]
+
+
+============================== 2 passed in 0.13s ==============================
+```
 ### PlayerCar Class
 ##### Component Planning
 ![[PlayerCar Class Decomposition]]
