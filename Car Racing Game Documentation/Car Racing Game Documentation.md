@@ -400,7 +400,21 @@ test_car_draw.py::TestCarDraw::test_draw_blits_placeholder_image_to_screen PASSE
 #### `__init__`
 
 ##### Component Test Plan
+| Test Number | Test Description                                  | Expected Outcome                                                                                                                                                                                               |
+| ----------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Initialize `PlayerCar` with valid image path      | `Car.__init__` is called with `is_npc=False`, image loads, rect and mask are created; `initial_x_pos`, `initial_y_pos`, `horizontal_speed_constant` are correctly assigned                                     |
+| 2           | Initialize `PlayerCar` with an invalid image path | `Car.__init__` is called with `is_npc=False`, a red placeholder surface is used for the image, rect and mask are created; `initial_x_pos`, `initial_y_pos`, `horizontal_speed_constant` are correctly assigned |
 ##### Component Testing
+![[playercar___init___test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 2 items
+
+test_playercar___init__.py::test_player_car_init_valid_image PASSED      [ 50%]
+test_playercar___init__.py::test_player_car_init_invalid_image PASSED    [100%]
+
+============================== 2 passed in 0.13s ==============================
+```
 #### `update`
 
 ##### Component Test Plan
