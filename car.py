@@ -32,7 +32,10 @@ class Car(pygame.sprite.Sprite):
         self.rect.centery = y_pos
         self.mask = pygame.mask.from_surface(self.image)
 
-    def update(self):
+    def update(self, *args, **kwargs):
+        """
+        Placeholder function. Actual code will be in subclasses
+        """
         pass
 
     def draw(self):
