@@ -9,7 +9,7 @@ class Car(pygame.sprite.Sprite):
             # Load the image for the car
             self.image = pygame.image.load(car_image).convert_alpha()
         # If there is an error loading the image, fall back to a placeholder
-        except pygame.error:
+        except (pygame.error, FileNotFoundError):
             print(
                 f"Warning: Could not load image {car_image}."
                 f" Using placeholder."

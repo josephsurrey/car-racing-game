@@ -416,17 +416,33 @@ test_playercar___init__.py::test_player_car_init_invalid_image PASSED    [100%]
 ============================== 2 passed in 0.13s ==============================
 ```
 #### `update`
-
 ##### Component Test Plan
+| Test Number | Test Description                                                                    | Expected Outcome                                                                  |
+| ----------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| 1           | Car is well within screen boundaries                                                | Car's `rect.left` and `rect.right` remain unchanged                               |
+| 2           | Car's left edge is off-screen to the left (negative `rect.left`)                    | Car's `rect.left` is set to 0                                                     |
+| 3           | Car's right edge is off-screen to the right (`rect.right` > `SCREEN_WIDTH`)         | Car's `rect.right` is adjusted to `settings.SCREEN_WIDTH`                         |
+| 4           | Car's left edge is exactly at the screen boundary (`rect.left` == 0)                | Car's `rect.left` remains 0, `rect.right` remains unchanged                       |
+| 5           | Car's right edge is exactly at the screen boundary (`rect.right` == `SCREEN_WIDTH`) | Car's `rect.right` remains `settings.SCREEN_WIDTH`, `rect.left` remains unchanged |
 ##### Component Testing
-#### `accelerate`
+![[playercar_update_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 5 items
 
-##### Component Test Plan
-##### Component Testing
-#### `brake`
+test_playercar_update.py::test_car_within_boundaries 
+PASSED              [ 20%]
+test_playercar_update.py::test_car_off_left_edge 
+PASSED                  [ 40%]
+test_playercar_update.py::test_car_off_right_edge 
+PASSED                 [ 60%]
+test_playercar_update.py::test_car_exactly_on_left_edge 
+PASSED           [ 80%]
+test_playercar_update.py::test_car_exactly_on_right_edge 
+PASSED          [100%]
 
-##### Component Test Plan
-##### Component Testing
+============================== 5 passed in 0.25s ==============================
+```
 #### `move_horizontal`
 
 ##### Component Test Plan
