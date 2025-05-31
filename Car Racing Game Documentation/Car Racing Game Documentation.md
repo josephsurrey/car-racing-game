@@ -374,8 +374,8 @@ test_car___init__.py::test_car_init_invalid_image_is_npc_false PASSED    [100%]
 ```
 #### `update`
 
-##### Component Test Plan
-##### Component Testing
+>[!note]
+>No testing required as function is just placeholder
 #### `draw`
 
 ##### Component Test Plan
