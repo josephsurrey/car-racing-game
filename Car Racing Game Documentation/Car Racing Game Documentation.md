@@ -446,8 +446,26 @@ PASSED          [100%]
 #### `move_horizontal`
 
 ##### Component Test Plan
+| Test Number | Test Description                    | Expected Outcome                                                           |
+| ----------- | ----------------------------------- | -------------------------------------------------------------------------- |
+| 1           | Test moving the player car left     | The car's `rect.x` coordinate decreases by its `horizontal_speed_constant` |
+| 2           | Test moving the player car right    | The car's `rect.x` coordinate increases by its `horizontal_speed_constant` |
+| 3           | Test player car with zero direction | The car's `rect.x` coordinate remains unchanged                            |
 ##### Component Testing
+![[playercar_move_horizontal_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 3 items
 
+test_playercar_move_horizontal.py::test_move_horizontal_left 
+PASSED      [ 33%]
+test_playercar_move_horizontal.py::test_move_horizontal_right 
+PASSED     [ 66%]
+test_playercar_move_horizontal.py::test_move_horizontal_no_movement 
+PASSED [100%]
+
+============================== 3 passed in 0.18s ==============================
+```
 ### NPCCar Class
 ##### Component Planning
 ![[NPCCar Class Decomposition]]
