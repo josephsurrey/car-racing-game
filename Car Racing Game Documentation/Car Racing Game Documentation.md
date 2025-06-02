@@ -466,6 +466,25 @@ PASSED [100%]
 
 ============================== 3 passed in 0.18s ==============================
 ```
+#### `reset_position`
+##### Component Test Plan
+| Test Number | Test Description                                    | Expected Outcome                                                                  |
+| :---------- | :-------------------------------------------------- | :-------------------------------------------------------------------------------- |
+| 1           | Reset car to initial position after being moved     | `rect.centerx` and `rect.centery` match `initial_x_pos` and `initial_y_pos`       |
+| 2           | Reset car when already at its initial position      | `rect.centerx` and `rect.centery` remain at `initial_x_pos` and `initial_y_pos` |
+##### Component Testing
+![[playercar_reset_position_test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 2 items
+
+test_playercar_reset_position.py::test_reset_position_after_move 
+PASSED  [ 50%]
+test_playercar_reset_position.py::test_reset_position_when_at_initial 
+PASSED [100%]
+
+============================== 2 passed in 0.34s ==============================
+```
 ### NPCCar Class
 ##### Component Planning
 ![[NPCCar Class Decomposition]]
