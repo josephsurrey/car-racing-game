@@ -591,7 +591,15 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `display_high_score`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                          | Expected Outcome                                                                    |
+| ----------- | ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| 1           | Display a positive high score             | "High Score: " text rendered at the correct position                                |
+| 2           | Display a high score of zero              | "High Score: 0" text rendered at the correct position                               |
+| 3           | Display a negative high score             | "High Score: " text rendered at the correct position                                |
+
 ##### Component Testing
+![[uimanager_display_high_score_test_results.png]]
 #### `display_game_over`
 
 ##### Component Test Plan
