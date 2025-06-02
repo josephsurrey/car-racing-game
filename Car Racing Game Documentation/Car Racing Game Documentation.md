@@ -620,3 +620,7 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 ![[assembled_outcome_test_1.png]]Fixed this by adding required argument
 ![[assembled_outcome_test_1_1.png]]Added required arguments
 Game now runs properly without crashing
+## Test 2
+The game ran correctly, but was not really playable due to poor values used in the `settings.py` file. I tweaked many of the constants, resulting in a much smoother gameplay experience.
+![[assembled_outcome_test_2.png]]
+## Test 3
