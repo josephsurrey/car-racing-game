@@ -99,7 +99,7 @@ class PlayerCar(Car):
 
 
 class NPCCar(Car):
-    def __init__(self, npc_image_path, x_pos, y_pos, speed):
+    def __init__(self, npc_image_path, x_pos, y_pos, speed, lane_id):
         super().__init__(npc_image_path, x_pos, y_pos, speed, is_npc=True)
         pass
 

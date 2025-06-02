@@ -50,6 +50,11 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
         self.npc_cars = pygame.sprite.Group()
 
+        # Create Pygame groups for each lane
+        self.lane_groups = []
+        for n in range(len(settings.LANE_POSITIONS)):
+            self.lane_groups.append(pygame.sprite.Group())
+
         self.all_sprites.add(self.player_car)
 
         # Set score and load high score
@@ -174,11 +179,29 @@ class Game:
                 self.screen, self.score, self.high_score
             )
 
-    def _spawn_npc_car(self, initial_spawn=False):
+    def _spawn_npc_car(self):
         # If there are fewer cars than the maximum on screen
         if len(self.npc_cars) < settings.MAX_NPCS:
-            # Set x pos to random choice of lane positions
-            npc_x_pos = random.randint(20, self.screen_width - 20)
+            while True:
+                # Set x pos to random choice of lane positions
+                lane_id = random.randint(0, (len(settings.LANE_POSITIONS) - 1))
+                # Assume the lane is valid for spawning
+                valid_lane = True
+                # Loop through all NPC's in selected lane
+                for npc in self.lane_groups[lane_id]:
+                    # If NPC is too close to top of screen,
+                    # flag lane as not valid and run loop again
+                    if npc.rect.top < (self.screen_height // 2):
+                        valid_lane = False
+                        break
+
+                # If lane hasn't been flagged as invalid, break the loop
+                if valid_lane:
+                    break
+
+            # Set NPC x position based on the selected lane
+            npc_x_pos = settings.LANE_POSITIONS[lane_id]
+
             # Set y pos based on height of car
             npc_y_pos = -settings.PLACEHOLDER_CAR_HEIGHT
             # Set random speed in between defined min and max speed
@@ -192,11 +215,13 @@ class Game:
                 npc_x_pos,
                 npc_y_pos,
                 npc_speed,
+                lane_id
             )
 
             # Add new npc instance to sprite groups
             self.all_sprites.add(npc)
             self.npc_cars.add(npc)
+            self.lane_groups[lane_id].add(npc)
 
     def _check_collisions(self):
         # If player collides with an NPC car

@@ -623,6 +623,14 @@ This method works by moving the player left and right a certain set amount every
 This method works by storing a value for the horizontal speed of the player. Whenever an arrow key is pressed, the horizontal velocity of the player is increased in the direction of movement (up until a certain limit `MAX_HORIZONTAL_SPEED`). This method works well because it can handle the precise movements that are needed to dodge the cars effectively. Short taps on the arrow keys cause much smaller movements than with method #1, but the larger movements remain unchanged. 
 
 Because of the positive gameplay experience of Method #2, I have decided to use this method in my final program.
+## Component #2 - NPC Spawning
+I trialled two methods of spawning NPCs, a random method, and a lane based method.
+### Method #1 - Random Spawning
+The first method of spawning NPCs was a random method. Whenever the `NPC_SPAWN_EVENT` was triggered, a new NPC would be spawned at a random x position (as long as `len(self.npc_cars) < settings.MAX_NPCS`). This implementation worked, however there were many times where NPC cars would hit each other or spawn on top of each other, which is not particularly realistic.
+### Method #2 - Lane based spawning
+This method was much more complex than method #1. First, the program calculated the correct number of lanes based on the screen dimensions and the size of the NPC cars. We also create a Pygame group for each lane. When the `NPC_SPAWN_EVENT` is triggered, the game checks lanes at random until a valid lane is found (no NPCs are in the top half of the screen in that lane). Once the valid lane is found, an NPC is spawned in that lane (and added to the Pygame group).  This implementation fixes the problem of NPCs colliding with each other, and makes the game much more visually appealing.
+
+Because Method #2 made a large improvement to the game with no downsides, I decided to use this method in my final outcome.
 # Assembled Outcome Testing
 ## Test 1
 ![[assembled_outcome_test_1.png]]Fixed this by adding required argument
