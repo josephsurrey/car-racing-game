@@ -628,3 +628,6 @@ None of the car images were rendering correctly
 ![[assembled_outcome_test_3.png]]
 I created some new images, and now everything displays as intended.
 ![[assembled_outcome_test_3_1.png]]
+
+## Test 4
+![[assembled_outcome_test_4.png]]I noticed that when braking, gaps could form between the images used for the road. This was due to errors from integers being rounded incorrectly. To fix this problem, I changed the method for calculating the position of the road images to use floats instead of integers.

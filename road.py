@@ -27,9 +27,13 @@ class Road:
 
             self.image_height = self.image.get_height()
 
+            # Setup floats for y position to make scrolling more accurate
+            self.y1_float = 0.0
+            self.y2_float = 0.0 - self.image_height
+
             # Create two rectangles for scrolling
-            self.rect1 = self.image.get_rect(topleft=(0, 0))
-            self.rect2 = self.image.get_rect(topleft=(0, -self.image_height))
+            self.rect1 = self.image.get_rect(topleft=(0, int(self.y1_float)))
+            self.rect2 = self.image.get_rect(topleft=(0, int(self.y2_float)))
 
         # If image fails to load
         except (pygame.error, FileNotFoundError):
@@ -46,14 +50,18 @@ class Road:
 
     def update(self, current_road_speed):
         # Move rects based on road speed
-        self.rect1.y += current_road_speed
-        self.rect2.y += current_road_speed
+        self.y1_float += current_road_speed
+        self.y2_float += current_road_speed
+        self.rect1.y = int(self.y1_float)
+        self.rect2.y = int(self.y2_float)
 
         # Scrolling functionality
-        if self.rect1.top >= self.image_height:
-            self.rect1.top = self.rect2.top - self.image_height
-        if self.rect2.top >= self.image_height:
-            self.rect2.top = self.rect1.top - self.image_height
+        if self.rect1.top >= self.screen_height:
+            self.y1_float = self.y2_float - self.image_height
+            self.rect1.y = int(self.y1_float)
+        elif self.rect2.top >= self.screen_height:
+            self.y2_float = self.y1_float - self.image_height
+            self.rect2.y = int(self.y2_float)
 
     def draw(self, screen):
         # Draw both rects to the screen
