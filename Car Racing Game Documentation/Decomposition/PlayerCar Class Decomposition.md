@@ -6,30 +6,23 @@ kanban-plugin: board
 
 ## `__init__`
 
-- [ ] Call `super().__init__` with player image and position.
-- [ ] Store the player's horizontal movement speed.
-
+- [ ] Call `super().__init__`.
+- [ ] Store initial X-position.
+- [ ] Store initial Y-position.
+- [ ] Store `horizontal_acceleration_constant`.
+- [ ] Initialize `self.horizontal_speed`.
 
 ## `update`
 
-- [ ] Ensure `self.rect.x` stays within screen/road boundaries.
-
+- [ ] Keep car within horizontal screen boundaries.
 
 ## `move_horizontal`
 
-- [ ] Adjust `self.rect.x` based on direction.
-- [ ] Clamp `self.rect.x` to stay within boundaries.
-
+- [ ] Update `self.horizontal_speed` based on `direction` and acceleration.
+- [ ] Clamp `self.horizontal_speed` to max horizontal speed.
+- [ ] Adjust `self.rect.centerx` by `self.horizontal_speed`.
 
 ## `reset_position`
 
-- [ ] Reset `self.rect.x` and `self.rect.y` to starting positions
-
-
-
-
-%% kanban:settings
-```
-{"kanban-plugin":"board","list-collapse":[false]}
-```
-%%
+- [ ] Reset `self.rect.centerx` to initial X-position.
+- [ ] Reset `self.rect.centery` to initial Y-position.

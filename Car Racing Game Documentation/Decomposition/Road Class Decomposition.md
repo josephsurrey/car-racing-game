@@ -1,22 +1,26 @@
 ---
 kanban-plugin: board
 ---
-
 # `__init__`
-- [ ] Load the road image.
-- [ ] Convert the loaded image.
-- [ ] Store the loaded road image.
-- [ ] Get the height of the road image.
-- [ ] Store screen height.
-- [ ] Create two `pygame.Rect` objects for the road image.
-- [ ] Position first rect at top-left.
-- [ ] Position second rect directly above first.
+- [ ] Store `screen_width` and `screen_height`.
+- [ ] Try to:
+    - [ ] Load road image and apply `convert()`.
+    - [ ] Get original image dimensions.
+    - [ ] Calculate aspect ratio.
+    - [ ] Scale image to screen width maintaining aspect ratio, assign to `self.image`.
+    - [ ] Store scaled image height in `self.image_height`.
+    - [ ] Initialize `self.y1_float` and `self.y2_float` for y-coordinate tracking.
+    - [ ] Create `self.rect1` and `self.rect2` at initial y-positions.
+- [ ] On image load error:
+    - [ ] Print a warning.
+    - [ ] Create a black placeholder `pygame.Surface`.
 
 # `update`
-- [ ] Increment Y positions of both rects by road speed.
-- [ ] If first rect is off-screen (bottom), reset its Y position relative to second.
-- [ ] If second rect is off-screen (bottom), reset its Y position relative to first.
+- [ ] Increment `self.y1_float` and `self.y2_float` by `current_road_speed`.
+- [ ] Update `self.rect1.y` and `self.rect2.y` from float counterparts.
+- [ ] If `self.rect1` scrolls off bottom, reset its `self.y1_float` relative to `self.y2_float`.
+- [ ] Else if `self.rect2` scrolls off bottom, reset its `self.y2_float` relative to `self.y1_float`.
 
 # `draw`
-- [ ] Blit the road image at first rect's position.
-- [ ] Blit the road image at second rect's position.
+- [ ] Blit `self.image` at `self.rect1` position.
+- [ ] Blit `self.image` at `self.rect2` position.

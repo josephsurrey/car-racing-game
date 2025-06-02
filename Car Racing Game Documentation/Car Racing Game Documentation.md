@@ -16,7 +16,6 @@
 |       |-- _load_high_score
 |       |-- _save_high_score
 |       |-- _reset_game
-|       |-- _show_game_over_screen
 |
 |-- car.py
 |   |-- class Car:
@@ -27,9 +26,8 @@
 |   |-- class PlayerCar:
 |   |   |-- __init__
 |   |   |-- update
-|   |   |-- accelerate
-|   |   |-- brake
 |   |   |-- move_horizontal
+|   |   |-- reset_position
 |   |
 |   |-- class NPCCar:
 |   |   |-- __init__
@@ -47,7 +45,6 @@
 |   |   |-- display_score
 |   |   |-- display_high_score
 |   |   |-- display_game_over
-|   |   |-- display_message
 |
 |-- settings.py
 |
@@ -106,12 +103,12 @@ test_game___init__.py::test_npc_spawn_event_setup PASSED                 [100%]
 #### `run`
 
 ##### Component Test Plan
-| Test Number | Test Description                                                           | Expected Outcome                                                                                                                                                                |
-| ----------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1           | Game loop calls correct functions and terminates when `running` is `false` | `clock.tick`, `_handle_events`, `_update_game_state` (if not game over), `_draw_elements`, `display.flip`, `display.set_caption` called once each. `pygame.quit` called on exit |
-| 2           | `_update_game_state` is not run when `game_over` is true                   | `_handle_events`, `_draw_elements` called. `_update_game_state` is not called. Loop continues if `running` is true until `running` becomes false                                |
-| 3           | Game loop runs for multiple iterations correctly                           | Core methods (`clock.tick`, `_handle_events`, etc) are called for each iteration. `pygame.quit` called once upon final exit                                                     |
-| 4           | FPS is displayed in window caption during loop                             | `pygame.display.set_caption()` is called in each loop iteration with a string including the current FPS value from `clock.get_fps()`                                            |
+| Test Number | Test Description                                                           | Expected Outcome                                                                                                                                        |
+| ----------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Game loop calls correct functions and terminates when `running` is `false` | `clock.tick`, `_handle_events`, `_update_game_state`, `_draw_elements`, `display.flip`, `display.set_caption` called once. `pygame.quit` called on exit |
+| 2           | `_update_game_state` is not run when `game_over` is true                   | `_handle_events`, `_draw_elements` called. `_update_game_state` is not called. Loop continues if `running` is true until `running` becomes false        |
+| 3           | Game loop runs for multiple iterations correctly                           | Core methods (`clock.tick`, `_handle_events`, etc) are called for each iteration. `pygame.quit` called once upon final exit                             |
+| 4           | FPS is displayed in window caption during loop                             | `pygame.display.set_caption()` is called in each loop with a string including the current FPS value from `clock.get_fps()`                              |
 ##### Component Testing
 ![[game_run_test_results.png]]
 ```
@@ -252,14 +249,14 @@ test_game__check_collisions.py::TestGameCheckCollisions::test_collision_detected
 
 ##### Component Test Plan
 
-| Test Number | Test Description                                  | Expected Outcome                                                                  |
-|-------------|---------------------------------------------------|-----------------------------------------------------------------------------------|
-| 1           | NPC is passed by player for the first time        | Score increases by 10, NPC is added to the set of passed NPCs                     |
-| 2           | NPC has already been passed and is checked again  | Score does not change, NPC remains in the set of passed NPCs                      |
-| 3           | NPC has not yet been passed by the player         | Score does not change, NPC is not added to the set of passed NPCs                 |
-| 4           | There are no NPC cars on screen                   | Score does not change, set of passed NPCs remains empty                           |
-| 5           | A previously passed NPC despawns (is not alive)   | NPC is removed from the set of passed NPCs, score remains unchanged from this event |
-| 6           | An NPC that was never passed despawns             | Score does not change, set of passed NPCs remains unchanged                       |
+| Test Number | Test Description                                 | Expected Outcome                                                                    |
+| ----------- | ------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| 1           | NPC is passed by player for the first time       | Score increases by 10, NPC is added to the set of passed NPCs                       |
+| 2           | NPC has already been passed and is checked again | Score does not change, NPC remains in the set of passed NPCs                        |
+| 3           | NPC has not yet been passed by the player        | Score does not change, NPC is not added to the set of passed NPCs                   |
+| 4           | There are no NPC cars on screen                  | Score does not change, set of passed NPCs remains empty                             |
+| 5           | A previously passed NPC despawns (is not alive)  | NPC is removed from the set of passed NPCs, score remains unchanged from this event |
+| 6           | An NPC that was never passed despawns            | Score does not change, set of passed NPCs remains unchanged                         |
 ##### Component Testing
 ![[game_update_score_test_results.png]]
 ```

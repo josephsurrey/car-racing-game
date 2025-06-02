@@ -1,34 +1,34 @@
 ---
 kanban-plugin: board
 ---
-
 # `__init__`
-- [ ] Initialise Pygame font module.
-- [ ] Create `self.font`.
+- [ ] Try to:
+    - [ ] Create `self.default_font`.
+    - [ ] Create `self.medium_font`.
+    - [ ] Create `self.large_font`.
+- [ ] On font load error:
+    - [ ] Print a warning.
+    - [ ] Fallback to system 'arial' font for all fonts.
 - [ ] Store `self.text_colour`.
-
-# `_render_text_surface`
-- [ ] Create a text surface using font and colour.
-- [ ] Return the text surface and its rectangle.
+- [ ] Store `self.screen_width` and `self.screen_height`.
 
 # `display_score`
 - [ ] Format score string.
-- [ ] Call `_render_text_surface`.
-- [ ] Position and blit the score surface.
+- [ ] Render score text surface.
+- [ ] Get text surface rectangle.
+- [ ] Position score rect at top-left.
+- [ ] Blit score surface onto `screen`.
 
 # `display_high_score`
 - [ ] Format high score string.
-- [ ] Call `_render_text_surface`.
-- [ ] Position and blit the high score surface.
+- [ ] Render high score text surface.
+- [ ] Get text surface rectangle.
+- [ ] Position high score rect at top-right.
+- [ ] Blit high score surface onto `screen`.
 
 # `display_game_over`
-- [ ] Render "GAME OVER" text.
-- [ ] Render final score text.
-- [ ] Render "High Score: [current_high_score]" text.
-- [ ] Render "Press [KEY] to Restart" text.
-- [ ] Position and blit all texts.
-
-# `display_message`
-- [ ] Use provided or default colour/size.
-- [ ] Render the message text.
-- [ ] Position and blit the message surface.
+- [ ] Create and blit a translucent overlay.
+- [ ] Render and blit "GAME OVER" text.
+- [ ] Render and blit "Final Score: [score]" text.
+- [ ] Render and blit "High Score: [high_score]" text.
+- [ ] Render and blit "Press R to Restart" text.
