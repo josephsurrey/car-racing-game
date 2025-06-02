@@ -8,7 +8,7 @@ from car import NPCCar
 
 # Constants from settings for convenience
 SCREEN_HEIGHT = settings.SCREEN_HEIGHT
-NPC_IMAGE_HEIGHT = settings.PLACEHOLDER_NPC_HEIGHT # Assuming image load fail for predictable size
+NPC_IMAGE_HEIGHT = settings.PLACEHOLDER_CAR_HEIGHT # Assuming image load fail for predictable size
 
 @pytest.fixture(scope="module", autouse=True)
 def pygame_setup():

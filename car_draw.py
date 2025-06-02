@@ -19,8 +19,8 @@ class Car(pygame.sprite.Sprite):
             colour = settings.BLUE if is_npc else settings.RED
             self.image = pygame.Surface(
                 (
-                    settings.PLACEHOLDER_NPC_WIDTH,
-                    settings.PLACEHOLDER_NPC_HEIGHT,
+                    settings.PLACEHOLDER_CAR_WIDTH,
+                    settings.PLACEHOLDER_CAR_HEIGHT,
                 ),
                 pygame.SRCALPHA,
             )

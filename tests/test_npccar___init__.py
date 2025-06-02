@@ -25,7 +25,7 @@ def test_npccar_init_valid_image():
     # Mock pygame.image.load to return a controlled Surface object
     mock_surface = MagicMock(spec=pygame.Surface)
     # Define a plausible rect for the mock surface
-    mock_rect = pygame.Rect(0, 0, settings.PLACEHOLDER_NPC_WIDTH, settings.PLACEHOLDER_NPC_HEIGHT)
+    mock_rect = pygame.Rect(0, 0, settings.PLACEHOLDER_CAR_WIDTH, settings.PLACEHOLDER_CAR_HEIGHT)
     mock_surface.get_rect.return_value = mock_rect
     # convert_alpha usually returns the surface itself after an operation
     mock_surface.convert_alpha.return_value = mock_surface
@@ -65,8 +65,8 @@ def test_npccar_init_invalid_image_uses_blue_placeholder():
 
         # Verify that a placeholder Surface was created
         assert isinstance(npc_car.image, pygame.Surface)
-        assert npc_car.image.get_width() == settings.PLACEHOLDER_NPC_WIDTH
-        assert npc_car.image.get_height() == settings.PLACEHOLDER_NPC_HEIGHT
+        assert npc_car.image.get_width() == settings.PLACEHOLDER_CAR_WIDTH
+        assert npc_car.image.get_height() == settings.PLACEHOLDER_CAR_HEIGHT
 
         # Verify the placeholder color is blue (as is_npc=True for NPCCar)
         # The Car class fills the SRCALPHA surface, resulting in (R,G,B,255)
@@ -82,4 +82,4 @@ def test_npccar_init_invalid_image_uses_blue_placeholder():
         # Verify a mask was created from the blue placeholder surface
         assert isinstance(npc_car.mask, pygame.mask.Mask)
         # Check if mask dimensions match the placeholder surface dimensions
-        assert npc_car.mask.get_size() == (settings.PLACEHOLDER_NPC_WIDTH, settings.PLACEHOLDER_NPC_HEIGHT)
+        assert npc_car.mask.get_size() == (settings.PLACEHOLDER_CAR_WIDTH, settings.PLACEHOLDER_CAR_HEIGHT)

@@ -96,7 +96,7 @@ def test_player_car_init_invalid_image(mock_car_pygame_surface_cls, mock_image_l
 
     # car.pygame.Surface(...) (which is now mock_car_pygame_surface_cls(...)) should have been called
     mock_car_pygame_surface_cls.assert_called_once_with(
-        (settings.PLACEHOLDER_NPC_WIDTH, settings.PLACEHOLDER_NPC_HEIGHT),
+        (settings.PLACEHOLDER_CAR_WIDTH, settings.PLACEHOLDER_CAR_HEIGHT),
         pygame.SRCALPHA  # pygame.SRCALPHA is a constant, should be fine
     )
     mock_placeholder_surface_instance.fill.assert_called_once_with(settings.RED)

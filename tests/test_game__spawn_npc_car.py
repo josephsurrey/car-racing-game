@@ -124,7 +124,7 @@ def test_spawn_npc_car_initializes_with_correct_parameters(mock_randint, mock_ch
 
     # Define expected properties for the new NPC
     expected_x_pos = settings.LANE_POSITIONS[2]  # Choose a specific lane for predictability
-    expected_y_pos = -settings.PLACEHOLDER_NPC_HEIGHT
+    expected_y_pos = -settings.PLACEHOLDER_CAR_HEIGHT
     expected_speed = settings.NPC_MIN_SPEED + 10  # A speed within the defined range
     expected_image_path = settings.NPC_IMAGE_PATH
 

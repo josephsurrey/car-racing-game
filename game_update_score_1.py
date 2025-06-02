@@ -207,7 +207,7 @@ class Game:
             # Set x pos to random choice of lane positions
             npc_x_pos = random.choice(settings.LANE_POSITIONS)
             # Set y pos based on height of car
-            npc_y_pos = -settings.PLACEHOLDER_NPC_HEIGHT
+            npc_y_pos = -settings.PLACEHOLDER_CAR_HEIGHT
             # Set random speed in between defined min and max speed
             npc_speed = random.randint(
                 settings.NPC_MIN_SPEED,

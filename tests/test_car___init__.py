@@ -91,8 +91,8 @@ def test_car_init_invalid_image_is_npc_true(mocker):
     # Assert that self.image is a pygame.Surface instance (the placeholder)
     assert isinstance(test_car.image, pygame.Surface)
     # Assert placeholder dimensions
-    assert test_car.image.get_width() == settings.PLACEHOLDER_NPC_WIDTH
-    assert test_car.image.get_height() == settings.PLACEHOLDER_NPC_HEIGHT
+    assert test_car.image.get_width() == settings.PLACEHOLDER_CAR_WIDTH
+    assert test_car.image.get_height() == settings.PLACEHOLDER_CAR_HEIGHT
     # Assert placeholder color is BLUE for NPC
     # We check the color of a pixel (e.g., at (0,0))
     # The placeholder surface is created with SRCALPHA, so get_at() returns (R,G,B,A)
@@ -100,8 +100,8 @@ def test_car_init_invalid_image_is_npc_true(mocker):
     assert test_car.image.get_at((0, 0))[:3] == settings.BLUE
 
     # Assert self.rect properties are based on the placeholder
-    assert test_car.rect.width == settings.PLACEHOLDER_NPC_WIDTH
-    assert test_car.rect.height == settings.PLACEHOLDER_NPC_HEIGHT
+    assert test_car.rect.width == settings.PLACEHOLDER_CAR_WIDTH
+    assert test_car.rect.height == settings.PLACEHOLDER_CAR_HEIGHT
     assert test_car.rect.centerx == TEST_X_POS
     assert test_car.rect.centery == TEST_Y_POS
 
@@ -135,14 +135,14 @@ def test_car_init_invalid_image_is_npc_false(mocker):
     # Assert that self.image is a pygame.Surface instance (the placeholder)
     assert isinstance(test_car.image, pygame.Surface)
     # Assert placeholder dimensions (these are currently fixed to NPC placeholder sizes)
-    assert test_car.image.get_width() == settings.PLACEHOLDER_NPC_WIDTH
-    assert test_car.image.get_height() == settings.PLACEHOLDER_NPC_HEIGHT
+    assert test_car.image.get_width() == settings.PLACEHOLDER_CAR_WIDTH
+    assert test_car.image.get_height() == settings.PLACEHOLDER_CAR_HEIGHT
     # Assert placeholder color is RED for non-NPC
     assert test_car.image.get_at((0, 0))[:3] == settings.RED
 
     # Assert self.rect properties are based on the placeholder
-    assert test_car.rect.width == settings.PLACEHOLDER_NPC_WIDTH
-    assert test_car.rect.height == settings.PLACEHOLDER_NPC_HEIGHT
+    assert test_car.rect.width == settings.PLACEHOLDER_CAR_WIDTH
+    assert test_car.rect.height == settings.PLACEHOLDER_CAR_HEIGHT
     assert test_car.rect.centerx == TEST_X_POS
     assert test_car.rect.centery == TEST_Y_POS
 

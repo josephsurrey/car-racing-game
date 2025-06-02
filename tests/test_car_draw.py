@@ -87,8 +87,8 @@ class TestCarDraw:
         # Check that a placeholder image (pygame.Surface) was created
         assert isinstance(test_car_with_placeholder.image, pygame.Surface)
         # Check placeholder dimensions (these come from settings.py)
-        assert test_car_with_placeholder.image.get_width() == settings.PLACEHOLDER_NPC_WIDTH
-        assert test_car_with_placeholder.image.get_height() == settings.PLACEHOLDER_NPC_HEIGHT
+        assert test_car_with_placeholder.image.get_width() == settings.PLACEHOLDER_CAR_WIDTH
+        assert test_car_with_placeholder.image.get_height() == settings.PLACEHOLDER_CAR_HEIGHT
         # Check rect center is set correctly even with placeholder
         assert test_car_with_placeholder.rect.centerx == car_x_pos
         assert test_car_with_placeholder.rect.centery == car_y_pos
