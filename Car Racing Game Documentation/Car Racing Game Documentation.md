@@ -554,7 +554,14 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `draw`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                                 | Expected Outcome                                                                               |
+| ----------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| 1           | Call draw method with a mock screen              | The `screen.blit` method is called twice                                                       |
+| 2           | Check arguments of the first `screen.blit` call  | `screen.blit` is called with the road image (`self.image`) and first rectangle (`self.rect1`)  |
+| 3           | Check arguments of the second `screen.blit` call | `screen.blit` is called with the road image (`self.image`) and second rectangle (`self.rect2`) |
 ##### Component Testing
+![[road_draw_test_results.png]]
 
 ## `ui_manager.py`
 ### UIManager Class
