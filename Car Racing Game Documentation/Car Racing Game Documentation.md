@@ -542,7 +542,15 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `update`
 
 ##### Component Test Plan
+| Test Number | Test Description                                      | Expected Outcome                                                                   |
+| ----------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| 1           | Road segments move down correctly                     | `rect1.y` and `rect2.y` increase by the given speed                                |
+| 2           | `rect1` scrolls correctly past image height           | `rect1.y` becomes `rect2.y - image_height` after `rect1.top` passes `image_height` |
+| 3           | `rect2` scrolls correctly past image height           | `rect2.y` becomes `rect1.y - image_height` after `rect2.top` passes `image_height` |
+| 4           | Road doesn't move with `speed = 0`                    | `rect1.y` and `rect2.y` do not change                                              |
+| 5           | Road segments move up correctly with a negative speed | `rect1.y` and `rect2.y` decrease by the value of the speed                         |
 ##### Component Testing
+![[road_update_test_results.png]]
 #### `draw`
 
 ##### Component Test Plan
