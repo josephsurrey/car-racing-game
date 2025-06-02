@@ -581,7 +581,13 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `display_score`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                      | Expected Outcome                                  |
+| ----------- | ------------------------------------- | ------------------------------------------------- |
+| 1           | Display score with a positive integer | Score text for positive value rendered at (20,20) |
+| 2           | Display score when score is zero      | Score text for zero value rendered at (20,20)     |
 ##### Component Testing
+![[uimanager_display_score_test_results.png]]
 #### `display_high_score`
 
 ##### Component Test Plan
