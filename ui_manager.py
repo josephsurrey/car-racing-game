@@ -32,7 +32,7 @@ class UIManager:
         surface = self.default_font.render(score_text, True, self.text_colour)
         # Set score position
         rect = surface.get_rect()
-        rect.topleft = (20, 20)
+        rect.topleft = (40, 20)
         # Draw to screen
         screen.blit(surface, rect)
 
@@ -44,7 +44,7 @@ class UIManager:
         )
         # Set high score position
         rect = surface.get_rect()
-        rect.topright = (self.screen_width - 20, 20)
+        rect.topright = (self.screen_width - 40, 20)
         # Draw to screen
         screen.blit(surface, rect)
 
