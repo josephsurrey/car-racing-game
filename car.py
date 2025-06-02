@@ -12,6 +12,21 @@ class Car(pygame.sprite.Sprite):
         try:
             # Load the image for the car
             self.image = pygame.image.load(car_image).convert_alpha()
+
+            original_width, original_height = self.image.get_size()
+
+            # Calculate image aspect ratio
+            aspect_ratio = original_height / original_width
+
+            # Transform image to fit screen while maintaining aspect ratio
+            self.image = pygame.transform.scale(
+                self.image,
+                (
+                    settings.PLACEHOLDER_CAR_WIDTH,
+                    settings.PLACEHOLDER_CAR_WIDTH * aspect_ratio,
+                ),
+            )
+
         # If there is an error loading the image, fall back to a placeholder
         except (pygame.error, FileNotFoundError):
             print(
@@ -78,7 +93,7 @@ class NPCCar(Car):
 
     def update(self, road_speed, screen_height):
         # Change Y position by road speed - car speed
-        self.rect.y += (road_speed - self.speed)
+        self.rect.y += road_speed - self.speed
 
         # Kill NPC once it has left the screen
         if self.rect.top > screen_height:

@@ -624,3 +624,7 @@ Game now runs properly without crashing
 The game ran correctly, but was not really playable due to poor values used in the `settings.py` file. I tweaked many of the constants, resulting in a much smoother gameplay experience.
 ![[assembled_outcome_test_2.png]]
 ## Test 3
+None of the car images were rendering correctly
+![[assembled_outcome_test_3.png]]
+I created some new images, and now everything displays as intended.
+![[assembled_outcome_test_3_1.png]]
