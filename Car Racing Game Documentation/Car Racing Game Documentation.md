@@ -511,7 +511,18 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `update`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                                                   | Expected Outcome                                                                                |
+| ----------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| 1           | NPC moves down when road speed is greater than NPC speed           | NPC's `rect.y` increases, `self.kill()` is not called, NPC remains alive                        |
+| 2           | NPC moves up when NPC speed is greater than road speed             | NPC's `rect.y` decreases, `self.kill()` is not called, NPC remains alive                        |
+| 3           | NPC remains stationary vertically when road speed equals NPC speed | NPC's `rect.y` is unchanged, `self.kill()` is not called, NPC remains alive                     |
+| 4           | NPC is killed when its top moves off the bottom of the screen      | NPC's `rect.y` increases, `self.kill()` is called, NPC is marked not alive                      |
+| 5           | NPC is not killed when its top reaches exactly the screen bottom   | NPC's `rect.y` increases, `self.kill()` is not called, NPC remains alive                        |
+| 6           | NPC starting off-screen is killed after moving further off-screen  | NPC's `rect.y` increases (further off-screen), `self.kill()` is called, NPC is marked not alive |
 ##### Component Testing
+![[npccar_update_test_results.png]]
+
 
 ## `road.py`
 ### Road Class
