@@ -53,14 +53,13 @@ class PlayerCar(Car):
         self.initial_y_pos = y_pos
         self.horizontal_speed_constant = horizontal_speed_constant
 
-    def update(self):
-        def update(self, screen_width):
-            # If player is off the edge of the screen,
-            # move back onto the screen
-            if self.rect.left < 0:
-                self.rect.left = 0
-            if self.rect.right > screen_width:
-                self.rect.right = screen_width
+    def update(self, screen_width):
+        # If player is off the edge of the screen,
+        # move back onto the screen
+        if self.rect.left < 0:
+            self.rect.left = 0
+        if self.rect.right > screen_width:
+            self.rect.right = screen_width
 
     def move_horizontal(self, direction):
         # Moves the player horizontally (direction == -1 for left, 1 for right)
