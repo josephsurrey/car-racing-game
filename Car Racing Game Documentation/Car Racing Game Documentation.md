@@ -491,7 +491,23 @@ PASSED [100%]
 #### `__init__`
 
 ##### Component Test Plan
+
+| Test Number | Test Description                                               | Expected Outcome                                                                                                                                                                   |
+| ----------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Initialize `NPCCar` with a valid image, position, and speed    | `Car.__init__` called with `is_npc=True`, image loads, `rect` and `speed` are correctly set, and `mask` is created from the image                                                  |
+| 2           | Initialize `NPCCar` with an invalid image, position, and speed | `Car.__init__` called with `is_npc=True`, a blue placeholder surface is used for the image, `rect` and `speed` are correctly set, and `mask` is created from the placeholder image |
 ##### Component Testing
+![[npccar__init___test_results.png]]
+```
+============================= test session starts =============================
+collecting ... collected 2 items
+
+test_npccar___init__.py::test_npccar_init_valid_image PASSED             [ 50%]
+test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PASSED [100%]
+
+
+============================== 2 passed in 0.34s ==============================
+```
 #### `update`
 
 ##### Component Test Plan
