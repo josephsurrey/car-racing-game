@@ -1,7 +1,4 @@
-# main.py
-import pygame
 from game import Game
-import settings
 
 
 def main():

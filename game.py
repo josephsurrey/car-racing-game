@@ -21,6 +21,10 @@ class Game:
         self.screen = pygame.display.set_mode(
             (settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT)
         )
+
+        self.screen_width = self.screen.get_width()
+        self.screen_height = self.screen.get_height()
+
         pygame.display.set_caption("Car Racing Game")
         self.clock = pygame.time.Clock()
 
@@ -140,8 +144,8 @@ class Game:
         self.road.update(self.current_road_speed)
 
         # Call function to update player and NPC cars
-        self.player_car.update()
-        self.npc_cars.update()
+        self.player_car.update(self.screen_width)
+        self.npc_cars.update(self.current_road_speed, self.screen_height)
 
         # Check for collisions
         self._check_collisions()

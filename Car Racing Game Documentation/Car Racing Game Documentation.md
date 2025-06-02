@@ -614,5 +614,9 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 ## `settings.py`
 ##### Component Planning
 ![[settings.py Decomposition]]
-##### Component Test Plan
-##### Component Testing
+
+# Assembled Outcome Testing
+## Test 1
+![[assembled_outcome_test_1.png]]Fixed this by adding required argument
+![[assembled_outcome_test_1_1.png]]Added required arguments
+Game now runs properly without crashing
