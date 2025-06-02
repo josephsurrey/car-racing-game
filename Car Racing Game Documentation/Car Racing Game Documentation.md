@@ -614,7 +614,15 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 ## `settings.py`
 ##### Component Planning
 ![[settings.py Decomposition]]
+# Trialling
+## Component #1 - Horizontal Movement
+I trialled two methods of horizontal movement, a linear method, and a acceleration method.
+### Method #1 - Linear Movement
+This method works by moving the player left and right a certain set amount every time the arrow/AD keys are pressed. This method works well for moving the car, but struggles with precise movements required to dodge cars effectively.
+### Method #2 - Acceleration based movement
+This method works by storing a value for the horizontal speed of the player. Whenever an arrow key is pressed, the horizontal velocity of the player is increased in the direction of movement (up until a certain limit `MAX_HORIZONTAL_SPEED`). This method works well because it can handle the precise movements that are needed to dodge the cars effectively. Short taps on the arrow keys cause much smaller movements than with method #1, but the larger movements remain unchanged. 
 
+Because of the positive gameplay experience of Method #2, I have decided to use this method in my final program.
 # Assembled Outcome Testing
 ## Test 1
 ![[assembled_outcome_test_1.png]]Fixed this by adding required argument
