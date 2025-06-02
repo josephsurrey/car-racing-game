@@ -531,7 +531,14 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `__init__`
 
 ##### Component Test Plan
+| Test Number | Test Description                                  | Expected Outcome                                                                                                                              |
+| ----------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Verify road image loads and scales correctly      | `self.image` is a scaled Surface, `self.rect1.topleft` is `(0,0)`, `self.rect2.topleft` is `(0, -self.image_height)`, no placeholder created  |
+| 2           | Verify placeholder created on `FileNotFoundError` | Warning printed, `self.image_original` is a black Surface matching screen dimensions, `self.image` attribute is not set                       |
+| 3           | Verify placeholder created on `pygame.error`      | Warning printed, `self.image_original` is a black Surface matching screen dimensions, `self.image` attribute is not set                       |
+| 4           | Verify scaling handles aspect ratio correctly     | `self.image` is scaled to screen width, its height calculated via aspect ratio, `rect1` and `rect2` are positioned correctly, no errors occur |
 ##### Component Testing
+![[road____init___test_results.png]]
 #### `update`
 
 ##### Component Test Plan
