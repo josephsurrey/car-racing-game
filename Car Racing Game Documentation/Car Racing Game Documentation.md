@@ -570,7 +570,14 @@ test_npccar___init__.py::test_npccar_init_invalid_image_uses_blue_placeholder PA
 #### `__init__`
 
 ##### Component Test Plan
+| Test Number | Test Description                                | Expected Outcome                                                                                                                                                        |
+| ----------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1           | Initialize with default font and settings       | System font 'arial' used for all fonts (`default_font`, `medium_font`, `large_font`), default `font_size` (36), `text_color` is `settings.WHITE`, screen dimensions set |
+| 2           | Initialize with a valid custom font             | Specified custom `font_name` used for all fonts, default `font_size` (36), `text_color` is `settings.WHITE`, screen dimensions set                                      |
+| 3           | Initialize with an invalid font name            | Fallback to system 'arial' for all fonts, warning printed, default `font_size` (36), `text_color` is `settings.WHITE`, screen dimensions set                            |
+| 4           | Initialize with custom font size and text color | System font 'arial' used for all fonts (`default_font` with custom `font_size`), custom `text_color` applied, screen dimensions set                                     |
 ##### Component Testing
+![[uimanager___init___test_results.png]]
 #### `display_score`
 
 ##### Component Test Plan
