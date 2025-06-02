@@ -31,6 +31,7 @@ class Game:
         # Set game states
         self.running = True
         self.game_over = False
+        self.show_instructions = True  # Show instructions at the start
 
         # Initialise Road, Car, and UI classes
         self.road = Road(
@@ -83,11 +84,10 @@ class Game:
             # and game events (spawning NPC cars)
             self._handle_events()
 
-            # If game is still running, update the game states
-            if not self.game_over:
-                self._update_game_state()
+            # Update game state (only if game is active)
+            self._update_game_state()
 
-            # Draws game elements to the screen
+            # Draw elements based on current game state
             self._draw_elements()
 
             # Updates the display
@@ -106,41 +106,47 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+                return  # Exit immediately if quitting
 
-            # Check to see if user wants to play again/quit
+            # Handle instruction screen dismissal
+            if self.show_instructions:
+                if event.type == pygame.KEYDOWN:
+                    self.show_instructions = False
+                continue
+
+            # Handle game_over screen inputs
             if self.game_over:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_r:
                         self._reset_game()
-                    if event.key == pygame.K_ESCAPE:
+                    elif event.key == pygame.K_ESCAPE:
                         self.running = False
+                # Don't process other game events if game is over
+                continue
+
             else:
-                # Check for spawning NPC's
                 if event.type == self.NPC_SPAWN_EVENT:
                     self._spawn_npc_car()
 
-        # If game is being played
-        if not self.game_over:
-            # Get keypress
+        # Handle continuous key presses for player movement
+        if not self.show_instructions and not self.game_over:
             keys = pygame.key.get_pressed()
-            # Accelerate or brake if correct keys are pressed
             if keys[pygame.K_UP] or keys[pygame.K_w]:
                 self.current_road_speed += settings.ACCELERATION_CONSTANT
             elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
                 self.current_road_speed -= settings.BRAKING_CONSTANT
 
-            # If current speed is >= max speed, set speed to max speed
             self.current_road_speed = max(
                 0, min(self.current_road_speed, settings.MAX_SPEED)
             )
 
-            # Move horizontally if correct keys are pressed
             if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 self.player_car.move_horizontal(-1)
             # If the player is moving left and not pressing left arrow,
             # set horizontal speed to 0
             elif self.player_car.horizontal_speed < 0:
                 self.player_car.horizontal_speed = 0
+
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 self.player_car.move_horizontal(1)
             # If the player is moving right and not pressing right arrow,
@@ -149,17 +155,13 @@ class Game:
                 self.player_car.horizontal_speed = 0
 
     def _update_game_state(self):
-        # Call function to update the road
-        self.road.update(self.current_road_speed)
-
-        # Call function to update player and NPC cars
-        self.player_car.update(self.screen_width)
-        self.npc_cars.update(self.current_road_speed, self.screen_height)
-
-        # Check for collisions
-        self._check_collisions()
-        # Update score
-        self._update_score()
+        # Only update game state if game is active
+        if not self.game_over and not self.show_instructions:
+            self.road.update(self.current_road_speed)
+            self.player_car.update(self.screen_width)
+            self.npc_cars.update(self.current_road_speed, self.screen_height)
+            self._check_collisions()
+            self._update_score()
 
     def _draw_elements(self):
         # Set screen colour to black
@@ -169,15 +171,19 @@ class Game:
         # Draw all sprites on the screen
         self.all_sprites.draw(self.screen)
 
-        # Display score and high score
-        self.ui_manager.display_score(self.screen, self.score)
-        self.ui_manager.display_high_score(self.screen, self.high_score)
-
-        # Display game over screen
-        if self.game_over:
+        if self.show_instructions:
+            self.ui_manager.display_instructions(self.screen)
+        elif self.game_over:
+            # Display score and high score typically part of game over screen
+            # or can be shown underneath
+            self.ui_manager.display_score(self.screen, self.score)
+            self.ui_manager.display_high_score(self.screen, self.high_score)
             self.ui_manager.display_game_over(
                 self.screen, self.score, self.high_score
             )
+        else:  # Game is running
+            self.ui_manager.display_score(self.screen, self.score)
+            self.ui_manager.display_high_score(self.screen, self.high_score)
 
     def _spawn_npc_car(self):
         # If there are fewer cars than the maximum on screen
@@ -215,7 +221,7 @@ class Game:
                 npc_x_pos,
                 npc_y_pos,
                 npc_speed,
-                lane_id
+                lane_id,
             )
 
             # Add new npc instance to sprite groups
@@ -281,6 +287,7 @@ class Game:
 
         # Reset player position and road speed
         self.player_car.reset_position()
+        self.player_car.horizontal_speed = 0
         self.current_road_speed = 0
 
         # Clear NPC cars
@@ -293,3 +300,6 @@ class Game:
             settings.SCREEN_WIDTH,
             settings.SCREEN_HEIGHT,
         )
+
+        # Show instructions for the new game
+        self.show_instructions = True

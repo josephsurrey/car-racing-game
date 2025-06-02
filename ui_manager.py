@@ -21,10 +21,53 @@ class UIManager:
             self.large_font = pygame.font.SysFont("arial", 72)
             self.medium_font = pygame.font.SysFont("arial", 48)
 
-        # Set text colour, and setup screen dimensions
+        # Set text colour
         self.text_colour = text_colour
+        # Setup screen dimensions
         self.screen_width = settings.SCREEN_WIDTH
         self.screen_height = settings.SCREEN_HEIGHT
+
+    def display_instructions(self, screen):
+        # Translucent overlay to make text easier to read
+        overlay = pygame.Surface(
+            (self.screen_width, self.screen_height), pygame.SRCALPHA
+        )
+        overlay.fill((0, 0, 0, 180))
+        screen.blit(overlay, (0, 0))
+
+        instructions_content = [
+            ("Instructions", self.large_font, settings.WHITE),
+            # Spacer
+            ("", self.default_font, settings.WHITE),
+            ("Use Arrow Keys or WASD to Steer", self.default_font, settings.WHITE),
+            ("UP / W : Accelerate", self.default_font, settings.WHITE),
+            ("DOWN / S : Brake", self.default_font, settings.WHITE),
+            # Spacer
+            ("", self.default_font, settings.WHITE),
+            ("Increase your score by passing NPC cars",
+             self.default_font, settings.WHITE),
+            # Spacer
+            ("", self.default_font, settings.WHITE),
+            ("Press any key to Start", self.medium_font, settings.GREEN)
+        ]
+
+        # Adjust starting Y position
+        current_y = self.screen_height / 2 - 150
+
+        for text, font, color in instructions_content:
+            # Handle spacers
+            if not text:
+                # Adjust spacing for empty lines
+                current_y += 30
+                continue
+
+            surface = font.render(text, True, color)
+            rect = surface.get_rect()
+            rect.centerx = int(self.screen_width / 2)
+            rect.top = int(current_y)
+            screen.blit(surface, rect)
+            # Add padding between lines
+            current_y += font.get_height() + 10
 
     def display_score(self, screen, score):
         score_text = f"Score: {score}"
